@@ -11,8 +11,12 @@ services:
     image: localhost/nginx
     restart: unless-stopped
     volumes:
-      - /etc/ssl/certs/cert.pem:/etc/ssl/certs/cert.pem
-      - /etc/ssl/private/key.pem:/etc/ssl/private/key.pem
+      - type: bind
+        source: /etc/ssl/certs/cert.pem
+        target: /etc/ssl/certs/cert.pem
+      - type: bind
+        source: /etc/ssl/private/key.pem
+        target: /etc/ssl/private/key.pem
     ports:
       - '80:80'
       - '443:443'

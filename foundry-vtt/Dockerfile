@@ -12,15 +12,14 @@ USER foundry
 
 # Create data directories for foundry.
 RUN mkdir -p /home/foundry/foundry-vtt /home/foundry/foundry-data
-RUN ls -lah /home/foundry
 VOLUME /home/foundry/foundry-data
 
 ENV FOUNDRY_HOME /home/foundry/foundry-vtt
 ENV FOUNDRY_DATA /home/foundry/foundry-data
 
 WORKDIR "$FOUNDRY_HOME"
-COPY ./versions/FoundryVTT-"$version".zip .
-RUN unzip ./FoundryVTT-"$version".zip ; rm ./FoundryVTT-"$version".zip
+COPY --chown=foundry:foundry ./versions/FoundryVTT-"$version".zip .
+RUN unzip ./FoundryVTT-$version.zip ; rm ./FoundryVTT-"$version".zip
 
 EXPOSE 30000
 
