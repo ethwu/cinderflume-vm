@@ -6,6 +6,10 @@ start:
 build:
 	docker compose build
 
+.PHONY: stop
+stop:
+	docker compose down --wait
+
 .PHONY: ps
 ps:
 	docker ps

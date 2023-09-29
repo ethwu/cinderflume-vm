@@ -1,5 +1,8 @@
 FROM alpine:latest
 
+# Get the verison of Foundry to run.
+ARG version=11.311
+
 # Install current Node.
 RUN apk add nodejs-current
 
@@ -16,8 +19,8 @@ ENV FOUNDRY_HOME /home/foundry/foundry-vtt
 ENV FOUNDRY_DATA /home/foundry/foundry-data
 
 WORKDIR "$FOUNDRY_HOME"
-COPY ./FoundryVTT-11.308.zip .
-RUN unzip ./FoundryVTT-11.308.zip ; rm ./FoundryVTT-11.308.zip
+COPY ./versions/FoundryVTT-"$version".zip .
+RUN unzip ./FoundryVTT-"$version".zip ; rm ./FoundryVTT-"$version".zip
 
 EXPOSE 30000
 

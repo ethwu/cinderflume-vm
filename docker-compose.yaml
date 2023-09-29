@@ -6,6 +6,8 @@ services:
     build:
       context: ./nginx/
       dockerfile: ./Dockerfile
+      args:
+        version: '11.311'
     image: localhost/nginx
     restart: unless-stopped
     volumes:
