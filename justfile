@@ -1,27 +1,29 @@
 
 # Start up the services.
 start:
-    make start
+    docker compose up --wait
 alias s := start
+alias up := start
 
 # Build and deploy services.
 deploy: build start
 
 # Build the images for the services.
 build:
-    make build
+    docker compose build
 alias b := build
 
 # Stop the services.
 stop:
-    make stop
+    docker compose down
+alias d := stop
 
 # Get the currently-running services.
 ps:
-    make ps
+    docker ps
 
 # Clean up artifacts.
 clean:
-    make clean
+    docker system prune
 alias c := clean
 

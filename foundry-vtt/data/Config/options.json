@@ -13,7 +13,7 @@
   "updateChannel": "stable",
   "upnp": false,
   "upnpLeaseDuration": null,
-  "awsConfig": null,
+  "awsConfig": "r2.json",
   "compressSocket": true,
   "cssTheme": "foundry",
   "deleteNEDB": false,
