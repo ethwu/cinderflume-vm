@@ -13,6 +13,11 @@ build:
     docker compose build
 alias b := build
 
+# Reload the nginx reverse proxy.
+reload:
+    docker exec nginx nginx -s reload
+alias r := reload
+
 # Stop the services.
 stop:
     docker compose down
