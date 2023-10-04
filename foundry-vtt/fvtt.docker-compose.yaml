@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  fvtt:
+    container_name: fvtt
+    hostname: vtt.paxconcordia.net
+    user: '1000:1000'
+    build:
+      context: ./foundry-vtt
+      dockerfile: ./Dockerfile
+      args:
+        version: '11.313'
+    image: localhost/fvtt
+    restart: unless-stopped
+    volumes:
+      - ./foundry-vtt/data/fvtt:/home/foundry/foundry-data
+

@@ -1,0 +1,7 @@
+
+set fallback
+
+# Delete old log files.
+clean:
+    rm -f logs/{access,error}.log
+

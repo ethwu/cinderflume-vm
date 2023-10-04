@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    image: localhost/nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/sites/:/etc/nginx/conf.d/
+      - ./nginx/logs/:/var/log/nginx/
+      - type: bind
+        source: /etc/ssl/certs/cert.pem
+        target: /etc/ssl/certs/cert.pem
+      - type: bind
+        source: /etc/ssl/private/key.pem
+        target: /etc/ssl/private/key.pem
+    ports:
+      - '80:80'
+      - '443:443'
+

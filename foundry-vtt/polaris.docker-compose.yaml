@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  polaris:
+    container_name: polaris
+    hostname: polaris.paxconcordia.net
+    user: '1000:1000'
+    build:
+      context: ./foundry-vtt
+      dockerfile: ./Dockerfile
+      args:
+        version: '11.313'
+    image: localhost/fvtt
+    restart: unless-stopped
+    volumes:
+      - ./foundry-vtt/data/fvtt/Data/systems/dnd5e:/home/foundry/foundry-data/Data/systems/dnd5e
+      - ./foundry-vtt/data/fvtt/Data/modules/about-time:/home/foundry/foundry-data/Data/modules/about-time
+      - ./foundry-vtt/data/fvtt/Data/modules/autoanimations:/home/foundry/foundry-data/Data/modules/autoanimations
+      - ./foundry-vtt/data/fvtt/Data/modules/colorsettings:/home/foundry/foundry-data/Data/modules/colorsettings
+      - ./foundry-vtt/data/fvtt/Data/modules/dae:/home/foundry/foundry-data/Data/modules/dae
+      - ./foundry-vtt/data/fvtt/Data/modules/dice-so-nice:/home/foundry/foundry-data/Data/modules/dice-so-nice
+      - ./foundry-vtt/data/fvtt/Data/modules/drag-ruler:/home/foundry/foundry-data/Data/modules/drag-ruler
+      - ./foundry-vtt/data/fvtt/Data/modules/foundryvtt-simple-calendar:/home/foundry/foundry-data/Data/modules/foundryvtt-simple-calendar
+      - ./foundry-vtt/data/fvtt/Data/modules/jb2a_patreon:/home/foundry/foundry-data/Data/modules/jb2a_patreon
+      - ./foundry-vtt/data/fvtt/Data/modules/jb2a-extras:/home/foundry/foundry-data/Data/modules/jb2a-extras
+      - ./foundry-vtt/data/fvtt/Data/modules/lib-wrapper:/home/foundry/foundry-data/Data/modules/lib-wrapper
+      - ./foundry-vtt/data/fvtt/Data/modules/midi-qol:/home/foundry/foundry-data/Data/modules/midi-qol
+      - ./foundry-vtt/data/fvtt/Data/modules/monks-little-details:/home/foundry/foundry-data/Data/modules/monks-little-details
+      - ./foundry-vtt/data/fvtt/Data/modules/monks-tokenbar:/home/foundry/foundry-data/Data/modules/monks-tokenbar
+      - ./foundry-vtt/data/fvtt/Data/modules/plutonium:/home/foundry/foundry-data/Data/modules/plutonium
+      - ./foundry-vtt/data/fvtt/Data/modules/popout:/home/foundry/foundry-data/Data/modules/popout
+      - ./foundry-vtt/data/fvtt/Data/modules/quick-insert:/home/foundry/foundry-data/Data/modules/quick-insert
+      - ./foundry-vtt/data/fvtt/Data/modules/routinglib:/home/foundry/foundry-data/Data/modules/routinglib
+      - ./foundry-vtt/data/fvtt/Data/modules/sequencer:/home/foundry/foundry-data/Data/modules/sequencer
+      - ./foundry-vtt/data/fvtt/Data/modules/socketlib:/home/foundry/foundry-data/Data/modules/socketlib
+      - ./foundry-vtt/data/fvtt/Data/modules/soundfxlibrary:/home/foundry/foundry-data/Data/modules/soundfxlibrary
+      - ./foundry-vtt/data/fvtt/Data/modules/token-action-hud-core:/home/foundry/foundry-data/Data/modules/token-action-hud-core
+      - ./foundry-vtt/data/fvtt/Data/modules/token-info-icons:/home/foundry/foundry-data/Data/modules/token-info-icons
+      - ./foundry-vtt/data/fvtt/Data/modules/tokenmagic:/home/foundry/foundry-data/Data/modules/tokenmagic
+      - ./foundry-vtt/data/fvtt/Data/modules/warpgate:/home/foundry/foundry-data/Data/modules/warpgate
+      - ./foundry-vtt/data/polaris:/home/foundry/foundry-data
+
