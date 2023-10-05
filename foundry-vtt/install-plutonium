@@ -45,28 +45,34 @@ plutonium="$data_dir"/Data/modules/plutonium/
 if [ -d "$plutonium" ] ; then
     # Also make sure that the backend files we expect are there.
     plugin="$plutonium"/server/v"${version%.*}"/plutonium-backend.mjs
+
     >&2 printf 'Checking for `%s`...\n' "$plugin"
     if [ -f "$plugin" ] ; then
         # The path to the server source.
         app="$install_dir"/resources/app/
 
-        >&2 printf 'Installing Plutonium to `%s`.\n' "$app"
+        # If the plugin was already installed, do nothing.
+        if [ -f "$app"/plutonium-backend.mjs ] ; then
+            >&2 printf 'Plutonium already installed.\n'
+        else
+            >&2 printf 'Installing Plutonium to `%s`.\n' "$app"
 
-        # Copy the plugin to the server files.
-        cp "$plugin" "$app"
+            # Copy the plugin to the server files.
+            cp "$plugin" "$app"
 
-        # Path to `main.mjs`.
-        main="$app"/main.mjs
+            # Path to `main.mjs`.
+            main="$app"/main.mjs
 
-        # Insert the `await` keyword before initialization.
-        sed -i 's/init.default({/await init.default({/' "$main"
+            # Insert the `await` keyword before initialization.
+            sed -i 's/init.default({/await init.default({/' "$main"
 
-        # Get the length of `main.mjs`.
-        main_len="$(wc -l "$main" | cut -d' ' -f 1)"
-        # Add a statement to import Plutonium after initializing.
-        sed -i "$main_len"'i\ \ (await import("./plutonium-backend.mjs")).Plutonium.init();' "$main"
+            # Get the length of `main.mjs`.
+            main_len="$(wc -l "$main" | cut -d' ' -f 1)"
+            # Add a statement to import Plutonium after initializing.
+            sed -i "$main_len"'i\ \ \;(await import("./plutonium-backend.mjs")).Plutonium.init();' "$main"
 
-        >&2 printf 'Plutonium installed successfully!\n'
+            >&2 printf 'Plutonium installed successfully!\n'
+        fi
     fi
 fi
 
