@@ -14,6 +14,7 @@ USER foundry
 RUN mkdir -p /home/foundry/foundry-vtt /home/foundry/foundry-data
 VOLUME /home/foundry/foundry-data
 
+ENV FOUNDRY_VERSION "$version"
 ENV FOUNDRY_HOME /home/foundry/foundry-vtt
 ENV FOUNDRY_DATA /home/foundry/foundry-data
 
@@ -26,5 +27,5 @@ COPY --chown=foundry:foundry ./install-plutonium /home/foundry
 
 EXPOSE 30000
 
-CMD ~/install-plutonium "$version" "$FOUNDRY_HOME" "$FOUNDRY_DATA" ; \
+CMD ~/install-plutonium "$FOUNDRY_VERSION" "$FOUNDRY_HOME" "$FOUNDRY_DATA" ; \
     node "$FOUNDRY_HOME"/resources/app/main.mjs --dataPath="$FOUNDRY_DATA" 
