@@ -1,0 +1,65 @@
+#! /bin/sh
+
+# Display the help message.
+help() {
+    msg="$1" ; shift ; [ -n "$msg" ] && >&2 printf "$msg\n" "$@"
+    >&2 cat <<END
+Install the Plutonium server scripts.
+
+Usage:
+    $0 [-h] <version> <install_dir> <data_dir>
+
+Arguments:
+    <version>       The version of Foundry.
+    <install_dir>   The path to Foundry's installation directory.
+    <data_dir>      The path to the Foundry data directory.
+
+Options:
+    -h  Display this help.
+END
+    [ -n "$msg" ] && exit 64
+}
+while getopts h- arg ; do
+    case "$arg" in
+        h) help ; exit 0 ;;
+        -) break ;;
+        *) help ; exit 64 ;;
+    esac
+done
+# Clear flags and handle positional arguments.
+shift $(( $OPTIND - 1 ))
+[ $# -lt 3 ] && help 'Too few arguments'
+# The version of Foundry VTT.
+version="$1" ; shift
+# The path to Foundry's installation directory.
+install_dir="$1" ; shift
+# The path to the Foundry data data directory.
+data_dir="$1" ; shift
+[ $# -gt 0 ] && help 'Too many arguments: %s' "$*"
+
+# Path to where Plutonium would be installed.
+plutonium="$data_dir"/Data/modules/plutonium/
+
+# Check if Plutonium is installed.
+if [ -d "$plutonium" ] ; then
+    # Also make sure that the backend files we expect are there.
+    plugin="$plutonium"/v"${version%.*}"/plutonium-backend.mjs
+    if [ -f "$plugin" ] ; then
+        # Copy the plugin to the server files.
+        cp "$plugin" "$install_dir"/resources/app/
+
+        # Path to `main.mjs`.
+        main="$install_dir"/resources/app/main.mjs
+
+        # Insert the `await` keyword before initialization.
+        sed -i 's/init.default({/await init.default({/' "$main"
+
+        # Get the length of `main.mjs`.
+        main_len="$(wc -l "$main" | cut -d' ' -f 1)"
+        # Line to insert import on.
+        import_line=$(( $main_len - 2 ))
+        # Add a statement to import Plutonium after initializing.
+        sed -i "$import_lien"'i\ \ (await import("./plutonium-backend.mjs")).Plutonium.init();' "$main"
+    fi
+fi
+

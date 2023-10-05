@@ -21,6 +21,10 @@ WORKDIR "$FOUNDRY_HOME"
 COPY --chown=foundry:foundry ./versions/FoundryVTT-"$version".zip .
 RUN unzip ./FoundryVTT-$version.zip ; rm ./FoundryVTT-"$version".zip
 
+# Copy the Plutonium installation script into the container.
+COPY --chown=foundry:foundry ./install-plutonium /home/foundry
+
 EXPOSE 30000
 
-CMD node "$FOUNDRY_HOME"/resources/app/main.mjs --dataPath="$FOUNDRY_DATA" 
+CMD ~/install-plutonium "$version" "$FOUNDRY_HOME" "$FOUNDRY_DATA" ; \
+    node "$FOUNDRY_HOME"/resources/app/main.mjs --dataPath="$FOUNDRY_DATA" 
