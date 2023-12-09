@@ -1,6 +1,6 @@
 
 # Call Docker Compose with all project files.
-docker-compose := 'docker compose ' + `fd docker-compose -e yaml -x printf '-f %s\n' "{}" | paste -s -d' '`
+docker-compose := 'docker compose -f ./docker-compose.yaml ' + `fd docker-compose -e yaml --min-depth 2 -x printf '-f %s\n' "{}" | paste -s -d' '`
 
 # Take services online.
 up *services:
@@ -30,6 +30,10 @@ alias b := build
 edit:
     {{quote(env_var_or_default('VISUAL', env_var_or_default('EDITOR', '/bin/vi')))}} docker-compose.yaml
 alias e := edit
+
+# Run a command with Docker Compose.
+compose *args:
+    {{docker-compose}} {{args}}
 
 # Reload the nginx reverse proxy.
 reload:

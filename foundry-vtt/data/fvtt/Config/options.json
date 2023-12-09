@@ -21,7 +21,7 @@
   "passwordSalt": null,
   "sslCert": null,
   "sslKey": null,
-  "world": null,
+  "world": "kingmaker",
   "serviceConfig": null,
   "telemetry": true
 }

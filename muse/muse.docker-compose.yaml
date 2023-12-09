@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  muse:
+    container_name: discord-muse
+    image: codetheweb/muse:latest
+    restart: unless-stopped
+    env_file:
+      - ./muse/.env
+    volumes:
+      - ./muse/data/:/data

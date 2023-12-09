@@ -12,10 +12,10 @@ services:
       - ./nginx/sites/:/etc/nginx/conf.d/
       - ./nginx/logs/:/var/log/nginx/
       - type: bind
-        source: /etc/ssl/certs/cert.pem
+        source: ./nginx/ssl/cert.pem
         target: /etc/ssl/certs/cert.pem
       - type: bind
-        source: /etc/ssl/private/key.pem
+        source: ./nginx/ssl/key.pem
         target: /etc/ssl/private/key.pem
     ports:
       - '80:80'

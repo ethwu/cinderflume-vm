@@ -14,13 +14,13 @@ services:
     restart: unless-stopped
     volumes:
       - ./foundry-vtt/data/fvtt/Data/systems/dnd5e:/home/foundry/foundry-data/Data/systems/dnd5e
-      - ./foundry-vtt/data/fvtt/Data/modules/about-time:/home/foundry/foundry-data/Data/modules/about-time
       - ./foundry-vtt/data/fvtt/Data/modules/autoanimations:/home/foundry/foundry-data/Data/modules/autoanimations
       - ./foundry-vtt/data/fvtt/Data/modules/colorsettings:/home/foundry/foundry-data/Data/modules/colorsettings
       - ./foundry-vtt/data/fvtt/Data/modules/dae:/home/foundry/foundry-data/Data/modules/dae
       - ./foundry-vtt/data/fvtt/Data/modules/dice-so-nice:/home/foundry/foundry-data/Data/modules/dice-so-nice
       - ./foundry-vtt/data/fvtt/Data/modules/drag-ruler:/home/foundry/foundry-data/Data/modules/drag-ruler
-      - ./foundry-vtt/data/fvtt/Data/modules/foundryvtt-simple-calendar:/home/foundry/foundry-data/Data/modules/foundryvtt-simple-calendar
+      - ./foundry-vtt/data/fvtt/Data/modules/force-client-controls:/home/foundry/foundry-data/Data/modules/force-client-controls
+      - ./foundry-vtt/data/fvtt/Data/modules/force-client-settings:/home/foundry/foundry-data/Data/modules/force-client-settings
       - ./foundry-vtt/data/fvtt/Data/modules/jb2a_patreon:/home/foundry/foundry-data/Data/modules/jb2a_patreon
       - ./foundry-vtt/data/fvtt/Data/modules/jb2a-extras:/home/foundry/foundry-data/Data/modules/jb2a-extras
       - ./foundry-vtt/data/fvtt/Data/modules/lib-wrapper:/home/foundry/foundry-data/Data/modules/lib-wrapper
