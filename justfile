@@ -1,15 +1,15 @@
 
 # Call Docker Compose with all project files.
-docker-compose := 'docker compose -f ./docker-compose.yaml ' + `fd docker-compose -e yaml --min-depth 2 -x printf '-f %s\n' "{}" | paste -s -d' '`
+compose := 'docker compose -f ./compose.yaml ' + `fd compose -e yaml --min-depth 2 -x printf '-f %s\n' "{}" | paste -s -d' '`
 
 # Take services online.
 up *services:
-    {{docker-compose}} up --wait {{services}}
+    {{compose}} up --wait {{services}}
 alias u := up
 
 # Take services offline.
 down *services:
-    {{docker-compose}} down {{services}}
+    {{compose}} down {{services}}
 alias d := down
 
 # Cycle services down and up.
@@ -23,17 +23,17 @@ alias l := logs
 
 # Build services.
 build *services:
-    {{docker-compose}} build {{services}}
+    {{compose}} build {{services}}
 alias b := build
 
 # Edit the Docker Compose file.
 edit:
-    {{quote(env_var_or_default('VISUAL', env_var_or_default('EDITOR', '/bin/vi')))}} docker-compose.yaml
+    {{quote(env_var_or_default('VISUAL', env_var_or_default('EDITOR', '/bin/vi')))}} compose.yaml
 alias e := edit
 
 # Run a command with Docker Compose.
 compose *args:
-    {{docker-compose}} {{args}}
+    {{compose}} {{args}}
 
 # Reload the nginx reverse proxy.
 reload:
