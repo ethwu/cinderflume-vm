@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  spacedeck:
+    container_name: spacedeck
+    build: https://github.com/spacedeck/spacedeck-open.git
+    restart: unless-stopped
+    user: '1000:1000'
+    volumes:
+      - ./spacedeck/storage:/app/storage
+      - ./spacedeck/database:/app/database
+
