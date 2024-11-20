@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  synapse:
+    container_name: synapse
+    image: matrixdotorg/synapse:latest
+    user: '1000:1000'
+    env_file:
+      - ./matrix/.env
+    volumes:
+      - ./matrix/synapse-files:/data
+    depends_on: [synapse_db]
+    restart: unless-stopped
+  synapse_db:
+    container_name: synapse-db
+    image: postgres:12-alpine
+    user: '1000:1000'
+    env_file:
+      - ./matrix/.env
+    volumes:
+      - ./matrix/synapse-db:/var/lib/postgresql/data
+    restart: unless-stopped
+  element:
+    container_name: element
+    image: vectorim/element-web:latest
+    volumes:
+      - ./matrix/element-config.json:/app/config.json
+    restart: unless-stopped

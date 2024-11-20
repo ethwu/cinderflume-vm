@@ -17,6 +17,7 @@ services:
       - type: bind
         source: ./nginx/ssl/key.pem
         target: /etc/ssl/private/key.pem
+      - ./nginx/srv:/srv/
     ports:
       - '80:80'
       - '443:443'
