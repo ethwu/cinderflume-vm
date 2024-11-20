@@ -9,4 +9,6 @@ services:
     volumes:
       - ./spacedeck/storage:/app/storage
       - ./spacedeck/database:/app/database
+    profiles:
+      - donotstart
 

@@ -21,7 +21,7 @@
   "passwordSalt": null,
   "sslCert": null,
   "sslKey": null,
-  "world": "pax-concordia",
+  "world": "",
   "serviceConfig": null,
   "telemetry": true
 }

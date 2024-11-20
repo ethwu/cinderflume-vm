@@ -12,6 +12,8 @@ services:
         version: '11.313'
     image: localhost/fvtt
     restart: unless-stopped
+    profiles:
+      - donotstart
     volumes:
       - ./foundry-vtt/data/fvtt/Data/systems/dnd5e:/home/foundry/foundry-data/Data/systems/dnd5e
       - ./foundry-vtt/data/fvtt/Data/modules/autoanimations:/home/foundry/foundry-data/Data/modules/autoanimations

@@ -1,0 +1,102 @@
+# The rollFormula option will let you define the dice roll formula used for all
+# move and stat rolls made by characters. Rolls should be entered with quotes,
+# such as "2d6", "2d10", or "d8+d6". You do not need to include a flat bonus
+# into the roll unless it's expected for every roll, such as "d6+d4+2".
+rollFormula = '2d6'
+# The optional rollShifting option will add buttons to moves in chat that will
+# allow their results to be shifted up or down. Can be set to either true or
+# false (defaults to false).
+rollShifting = true
+# The statToggle option can be entered as either a single value field or as a
+# group with label and modifier properties. If a modifier is included, any stats
+# that the player has enabled the toggle for will have its stat rolls and move
+# rolls modified by that value, such as a penalty for Debilities. If the
+# statToggle option is set as a single value, it will be assumed that the
+# modifier is 0.
+#
+# This setting is optional and can be left out if preferred.
+[statToggle]
+label = 'Condition'
+modifier = '-1'
+## If either the minMod or maxMod options are included, roll modifiers will be
+## restricted based on the number you enter. For example, if the minMod is set
+## to -1 and the maxMod is set to +3, a roll that's 2d6-3 would be treated as
+## 2d6-1 and a roll that's 2d6+5 would be treated as 2d6+3.
+##
+## This setting is optional and can be left out if preferred.
+#minMod = -2
+#maxMod = 4
+
+# The rollResults option is a group that supports any number of subgroups for
+# various result ranges. This system includes special color-coding for failure,
+# partial, success, and critical result ranges, but you can define any number of
+# result ranges that you need. A future version of the system will include an
+# additional setting for custom color-coding.
+[rollResults.success]
+range = '10+'
+label = 'Up Beat'
+[rollResults.partial]
+range = '7-9'
+label = 'Mixed Beat'
+[rollResults.failure]
+range = '6-'
+label = 'Down Beat'
+
+[character.stats]
+daring = 'Daring'
+grace = 'Grace'
+heart = 'Heart'
+wit = 'Wit'
+spirit = 'Spirit'
+
+[character.attributesTop.xp]
+type = 'Xp'
+label = 'Experience (XP)'
+max = 5
+
+[character.attributesLeft.conditions]
+type = 'ListMany'
+label = 'Conditions'
+description = 'Choose all that apply:'
+condition = true
+options = [
+    'Angry (-2 to Figure out a Person)',
+    'Frightened (-2 to Fight)',
+    'Guilty (-2 to Emotional Support)',
+    'Hopeless (-2 to Defy Disaster)',
+    'Insecure (-2 to Entice)',
+]
+
+[character.moveTypes]
+danger = 'Danger Moves'
+heartstring = 'Heartstring Moves'
+recovery = 'Recovery Moves'
+special = 'Special Moves'
+playbook = 'Playbook Moves'
+
+[character.equipmentTypes]
+string = 'String'
+
+[npc.attributesTop.defeated]
+type = 'Checkbox'
+label = 'Defeated'
+
+[npc.attributesLeft.conditions]
+type = 'ListMany'
+label = 'Conditions'
+description = 'Choose all that apply:'
+condition = true
+options = [
+    'Angry (-2 to Figure out a Person)',
+    'Frightened (-2 to Fight)',
+    'Guilty (-2 to Emotional Support)',
+    'Hopeless (-2 to Defy Disaster)',
+    'Insecure (-2 to Entice)',
+]
+
+[npc.moveTypes]
+gm = 'GM Moves'
+
+[npc.equipmentTypes]
+string = 'String'
+

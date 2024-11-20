@@ -9,7 +9,8 @@ services:
       context: ./foundry-vtt
       dockerfile: ./Dockerfile
       args:
-        version: '11.315'
+        # version: '11.315'
+        version: '12.328'
     image: localhost/fvtt
     restart: unless-stopped
     volumes:
