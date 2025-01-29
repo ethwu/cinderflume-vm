@@ -1,0 +1,7 @@
+
+set fallback := true
+
+# Run `psql` in Synapse's backing database.
+psql:
+    docker exec -it synapse-db psql -U synapse
+
