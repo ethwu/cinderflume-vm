@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Get the verison of Foundry to run.
-ARG version=11.311
+ARG version=12.331
 
 # Install current Node.
 RUN apk add nodejs-current
